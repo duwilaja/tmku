@@ -187,7 +187,7 @@ include 'inc.head.php';
 					<input type="hidden" name="mn" value="<?php echo $mn?>" />
 					<input type="hidden" id="rowid" name="rowid" value="0" />
 					<input type="hidden" id="sv" name="sv" />
-					<input type="hidden" name="cols" value="status,lastnote,problem,assignedto,priority,target" />
+					<input type="hidden" name="cols" value="customer,service,status,lastnote,problem,assignedto,priority,target" />
 					<input type="hidden" name="tname" value="xtm_tickets" />
 						<div class="form-group row">
 							<label class="col-form-label col-sm-2">Task#</label>
@@ -202,13 +202,13 @@ include 'inc.head.php';
 						<div class="form-group row">
 							<label class="col-form-label col-sm-2">Customer</label>
 							<div class="col-sm-4">
-								<select readonly class="form-control" name="customer" id="customer">
+								<select class="form-control" name="customer" id="customer">
 								<?php echo options($cust)?>
 								</select>
 							</div>
 							<label class="col-form-label col-sm-2">Service</label>
 							<div class="col-sm-4">
-								<select readonly class="form-control" id="service" name="service">
+								<select class="form-control" id="service" name="service">
 								<?php echo options($serv)?>
 								</select>
 							</div>
