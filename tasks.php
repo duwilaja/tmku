@@ -22,7 +22,7 @@ $serv=fetch_all($rs);
 $rs=exec_qry($conn,"select probid,probname from xtm_problems order by probname");
 $prob=fetch_all($rs);
 
-$rs=exec_qry($conn,"select user,name from xtm_users order by name");
+$rs=exec_qry($conn,"select user,name from xtm_users where user<>'bos' order by name");
 $usrs=fetch_all($rs);
 
 disconnect($conn);
@@ -48,6 +48,9 @@ include 'inc.head.php';
 		<div class="row">
 			<div class="col-md-2"><select id="fs" class="form-control"><option value="">All Status</option>
 			<?php echo options($o_status)?>
+			</select></div>
+			<div class="col-md-2"><select id="fu" class="form-control"><option value="">All User</option>
+			<?php echo options($usrs)?>
 			</select></div>
 			<div class="col-md-2"><button class="btn btn-primary" onclick="reloadtbl();"><i class="fa fa-search"></i></button></div>
 			<div class="col-md-8"><button class="btn btn-primary" style="float:right;" onclick="newticket();"><i class="fa fa-plus"></i></button></div>
@@ -109,9 +112,9 @@ include 'inc.head.php';
 					<input type="hidden" name="mn" value="<?php echo $mn?>x" />
 					<input type="hidden" name="rowid" value="0" />
 					<input type="hidden" name="sv" value="NEW" />
-					<input type="hidden" name="cols" value="customer,service,detail,problem<?php echo ($s_ACCESS!='U')?',calltime':'';?>" />
+					<input type="hidden" name="cols" value="target,customer,service,detail,problem<?php echo ($s_ACCESS!='U' and false)?',calltime':'';?>" />
 					<input type="hidden" name="tname" value="xtm_tickets" />
-					<?php if($s_ACCESS!='U'){?>
+					<?php if(false){//($s_ACCESS!='U'){?>
 						<div class="form-group row">
 							<label class="col-form-label col-sm-4">Date/Time</label>
 							<div class="col-sm-8">
@@ -141,6 +144,12 @@ include 'inc.head.php';
 								<select class="form-control" id="problemx" name="problem">
 								<?php echo options($prob)?>
 								</select>
+							</div>
+						</div>
+						<div class="form-group row">
+							<label class="col-form-label col-sm-4">Target</label>
+							<div class="col-sm-8">
+								<input type="text" name="target" id="targetx" class="form-control datepicker" placeholder="" />
 							</div>
 						</div>
 						<div class="form-group row">
@@ -357,8 +366,9 @@ $(document).ready(function(){
 				d.where= '<?php echo base64_encode($where); ?>',
 				d.csrc= '<?php echo base64_encode($csrc); ?>',
 				d.cseq= '<?php echo base64_encode($cseq); ?>',
-				d.filtereq='<?php echo base64_encode("status"); ?>',
+				d.filtereq='<?php echo base64_encode("status,assignedto"); ?>',
 				d.status=$('#fs').val(),
+				d.assignedto=$('#fu').val(),
 				d.x= '<?php echo $mn?>'
 			}
 		}
@@ -396,6 +406,15 @@ $(document).ready(function(){
 		},
 		"detail" : {
 			required : true
+		},
+		"target" : {
+			required : true
+		},
+		"fattc" : {
+			required : true
+		},
+		"problem" : {
+			required : true
 		}
     }});
 	jvalidate = $("#myf").validate({
@@ -403,6 +422,9 @@ $(document).ready(function(){
         "lastnote" : {
             required : true
         },
+		"fattc" : {
+			required : true
+		},
 		"status" : {
 			required : true,
 			equals : ["progress","pending","solved","closed"]

@@ -91,7 +91,7 @@ if($mn=='ticketx'){
 	$tn=date("YmdHis");
 	$cols="rowid,ticketno,createdby,lastupdate,updatedby";
 	$vals="'$tn','$tn','$s_ID',now(),'$s_ID'";
-	if($s_ACCESS=='U'){
+	if(true){//($s_ACCESS=='U'){
 		$cols.=",calltime";
 		$vals.=",now()";
 	}
