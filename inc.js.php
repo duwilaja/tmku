@@ -109,6 +109,8 @@
 <script type='text/javascript' src="plugins/daterangepicker/daterangepicker.js"></script>
 <script type='text/javascript' src="plugins/chart.js/Chart.min.js"></script>
 
+<script type='text/javascript' src="plugins/summernote/summernote-lite.min.js"></script>
+
 <!--script type='text/javascript' src="plugins/Leaflet.Icon.Glyph.js"></script-->
 
 <!-- AdminLTE App -->
