@@ -112,7 +112,7 @@ include 'inc.head.php';
 					<input type="hidden" name="mn" value="<?php echo $mn?>x" />
 					<input type="hidden" name="rowid" value="0" />
 					<input type="hidden" name="sv" value="NEW" />
-					<input type="hidden" name="cols" value="target,customer,service,detail,problem<?php echo ($s_ACCESS!='U' and false)?',calltime':'';?>" />
+					<input type="hidden" name="cols" value="target,customer,service,detail,problem" />
 					<input type="hidden" name="tname" value="xtm_tickets" />
 					<?php if(false){//($s_ACCESS!='U'){?>
 						<div class="form-group row">
