@@ -97,7 +97,7 @@ include 'inc.head.php';
       </div><!-- /.container-fluid -->
 	  
 	  <div class="modal fade" id="modal_new">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h4 class="modal-title">New <?php echo $ptitle?></h4>
@@ -155,7 +155,7 @@ include 'inc.head.php';
 						<div class="form-group row">
 							<label class="col-form-label col-sm-4">Detail</label>
 							<div class="col-sm-8">
-								<textarea class="form-control" id="detailx" name="detail"></textarea>
+								<textarea class="form-control summernote" id="detailx" name="detail"></textarea>
 							</div>
 						</div>
 						<div class="form-group row">
@@ -223,12 +223,12 @@ include 'inc.head.php';
 							</div>
 						</div>
 						<div class="form-group row">
-							<label class="col-form-label col-sm-2">Detail</label>
-							<div class="col-sm-4">
+							<label class="col-form-label col-sm-2 hidden">Detail</label>
+							<div class="col-sm-4 hidden">
 								<textarea readonly class="form-control" id="detail" name="detail"></textarea>
 							</div>
 							<label class="col-form-label col-sm-2">Latest Note</label>
-							<div class="col-sm-4">
+							<div class="col-sm-10">
 								<textarea readonly class="form-control" id="lastnote" name="not"></textarea>
 							</div>
 							
@@ -465,6 +465,8 @@ $(document).ready(function(){
 		  format: 'YYYY-MM-DD'
 		}
 	});
+	
+	$(".summernote").summernote();
 });
 function reloadtbl(){
 	mytbl.ajax.reload();
